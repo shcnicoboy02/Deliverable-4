@@ -1,5 +1,7 @@
 """Temperature class that supports Celsius ("C"), Fahrenheit ("F") and Kelvin ("K")."""
 
+from __future__ import annotations  # Lets "-> Temperature" be used inside the class on Python < 3.14
+
 VALID_UNITS = ("C", "F", "K")
 TOLERANCE = 1e-9  # Floating-point tolerance used in validation and comparisons
 
@@ -26,15 +28,18 @@ class Temperature:
 
     @property
     def value(self) -> float:
+        """The temperature value, in its own unit."""
         return self._value
 
     @property
     def unit(self) -> str:
+        """The unit: "C", "F" or "K"."""
         return self._unit
 
     # --- Conversions ------------------------------------------------------------
 
     def to_celsius(self) -> float:
+        """Return the temperature in degrees Celsius."""
         if self._unit == "K":
             return self._value - 273.15
         if self._unit == "F":
@@ -42,6 +47,7 @@ class Temperature:
         return self._value
 
     def to_fahrenheit(self) -> float:
+        """Return the temperature in degrees Fahrenheit."""
         if self._unit == "C":
             return self._value * 9 / 5 + 32
         if self._unit == "K":
@@ -49,6 +55,7 @@ class Temperature:
         return self._value
 
     def to_kelvin(self) -> float:
+        """Return the temperature in Kelvin."""
         if self._unit == "C":
             return self._value + 273.15
         if self._unit == "F":
@@ -56,6 +63,7 @@ class Temperature:
         return self._value
 
     def convert_to(self, target_unit: str) -> Temperature:
+        """Return a new Temperature in target_unit (case-insensitive). Raises ValueError if the unit is invalid."""
         target = self._normalise_unit(target_unit)
         if target == "C":
             return Temperature(self.to_celsius(), "C")
@@ -66,9 +74,11 @@ class Temperature:
     # --- String representations -------------------------------------------------
 
     def __repr__(self) -> str:
+        """Unambiguous representation, e.g. Temperature(25.0, 'C')."""
         return f"Temperature({self._value!r}, {self._unit!r})"
 
     def __str__(self) -> str:
+        """Human-readable representation with two decimals, e.g. 25.00 °C."""
         symbol = "K" if self._unit == "K" else f"°{self._unit}"  # Kelvin has no degree sign
         return f"{self._value:.2f} {symbol}"
 
