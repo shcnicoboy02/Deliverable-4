@@ -1,4 +1,4 @@
-
+import math
 
 class Fraction:
     def __init__(self, numerator: int, denominator: int) -> None:
@@ -6,8 +6,10 @@ class Fraction:
             raise TypeError("Numerator and denominator must be integers")
         if denominator <= 0:
             raise ValueError("Denominator must be a positive integer")
-        self.numerator = numerator
-        self.denominator = denominator
+        # Simplify the fraction using the greatest common divisor (gcd)
+        gcd = math.gcd(numerator, denominator)
+        self.numerator = numerator // gcd
+        self.denominator = denominator // gcd  
 
     def __repr__(self):
         return f"Fraction({self.numerator}, {self.denominator})"
