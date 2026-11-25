@@ -1,5 +1,3 @@
-
-import pytest
 from fraction import Fraction
 
 def test_init():
@@ -67,4 +65,3 @@ def test_greater_than_or_equal():
     f1 = Fraction(1, 2)
     f2 = Fraction(1, 2)
     assert f1 >= f2
-
