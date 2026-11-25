@@ -1,3 +1,5 @@
+"""A module to define a Fraction class and its operations."""
+
 from __future__ import annotations
 import math
 

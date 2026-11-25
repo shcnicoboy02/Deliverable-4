@@ -1,3 +1,4 @@
+
 from fraction import Fraction
 
 def test_init():
