@@ -43,4 +43,44 @@ class Fraction:
         new_denominator = self.denominator * other.numerator
         return Fraction(new_numerator, new_denominator)
 
+    def __eq__(self, other):
+        # Equality check: a/b == c/d if and only if a*d == b*c
+        if not isinstance(other, Fraction):
+            return False
+        return (self.numerator * other.denominator) == (other.numerator * self.denominator)
+
+    def __ne__(self, other):
+        # Not equal comparison
+        if not isinstance(other, Fraction):
+            return True
+        return (self.numerator * other.denominator) != (other.numerator * self.denominator)
+
+    def __lt__(self, other):
+        # Less than comparison
+        if not isinstance(other, Fraction):
+            raise TypeError("Can only compare Fraction with Fraction")
+        return (self.numerator * other.denominator) < (other.numerator * self.denominator)
+
+    def __gt__(self, other):
+        # Greater than comparison
+        if not isinstance(other, Fraction):
+            raise TypeError("Can only compare Fraction with Fraction")
+        return (self.numerator * other.denominator) > (other.numerator * self.denominator)
+
+    def __le__(self, other):
+        # Less than or equal comparison
+        if not isinstance(other, Fraction):
+            raise TypeError("Can only compare Fraction with Fraction")
+        return (self.numerator * other.denominator) <= (other.numerator * self.denominator)
+
+    def __ge__(self, other):
+        # Greater than or equal comparison
+        if not isinstance(other, Fraction):
+            raise TypeError("Can only compare Fraction with Fraction")
+        return (self.numerator * other.denominator) >= (other.numerator * self.denominator)
+    
+
+
+    
+
     
